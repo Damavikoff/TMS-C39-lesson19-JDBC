@@ -212,31 +212,32 @@ public class DataHandler {
         if (index < 1) {
             System.out.println("Invalid index supplied.");
             return null;
-        } else {
-            Connection conn = getConnection();
-            if (conn == null) return null;
-            
-            String sql = "select * from " + table + " where id = " + index;
+        }
+        if (!validateTableName(table)) return null;
 
-            try (conn; PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
-                ResultSetMetaData meta = rs.getMetaData();
-                int columns = meta.getColumnCount();
-                
-                if (rs.next()) {
-                    Map<String, String> result = new HashMap<>();
-                    
-                    for(int i=1; i<=columns; ++i){           
-                        result.put(meta.getColumnName(i),rs.getString(i));
-                    }
-                    return result;
-                } else {
-                    System.out.println("No data found.");
-                    return null;
+        Connection conn = getConnection();
+        if (conn == null) return null;
+
+        String sql = "select * from " + table + " where id = " + index;
+
+        try (conn; PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+            ResultSetMetaData meta = rs.getMetaData();
+            int columns = meta.getColumnCount();
+
+            if (rs.next()) {
+                Map<String, String> result = new HashMap<>();
+
+                for(int i=1; i<=columns; ++i){           
+                    result.put(meta.getColumnName(i),rs.getString(i));
                 }
-            } catch (SQLException e) {
-                handleException(e);
+                return result;
+            } else {
+                System.out.println("No data found.");
                 return null;
             }
+        } catch (SQLException e) {
+            handleException(e);
+            return null;
         }
     }
     
