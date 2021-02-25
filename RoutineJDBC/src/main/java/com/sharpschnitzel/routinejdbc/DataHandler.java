@@ -27,8 +27,7 @@ public class DataHandler {
     private static String defaultTable;
     
     private static void handleException(SQLException e) {
-        System.out.println(e.getSQLState());
-        System.out.println(e);
+        
         switch (e.getSQLState()) {
             case "08001" -> System.out.println("Unable to connect.");
             case "42P01" -> System.out.println("Specified table does not exist.");
@@ -240,9 +239,5 @@ public class DataHandler {
             return null;
         }
     }
-    
-    
-    
-    
     
 }
