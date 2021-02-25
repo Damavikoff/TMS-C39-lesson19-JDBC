@@ -74,7 +74,7 @@ public class DataHandler {
     
     public static void processRow(Map<String, String> data) {
         if (defaultTable == null) {
-            System.out.println("Default table does not specified. Either set default table or provide suitable table name for this method.");
+            System.out.println("Default table is not specified. Either set default table or provide suitable table name for this method.");
         } else {
             processRow(defaultTable, data);
         }
@@ -115,7 +115,7 @@ public class DataHandler {
     
     public static void processRow(int index, Map<String, String> data) {
         if (defaultTable == null) {
-            System.out.println("Default table does not specified. Either set default table or provide suitable table name for this method.");
+            System.out.println("Default table is not specified. Either set default table or provide suitable table name for this method.");
         } else {
             processRow(defaultTable, index, data);
         }
@@ -167,7 +167,7 @@ public class DataHandler {
     
     public static void removeRow(int index) {
         if (defaultTable == null) {
-            System.out.println("Default table does not specified. Either set default table or provide suitable table name for this method.");
+            System.out.println("Default table is not specified. Either set default table or provide suitable table name for this method.");
         } else {
             removeRow(defaultTable, index);
         }
@@ -201,7 +201,7 @@ public class DataHandler {
     
     public static Map<String, String> getRow(int index) {
         if (defaultTable == null) {
-            System.out.println("Default table does not specified. Either set default table or provide suitable table name for this method.");
+            System.out.println("Default table is not specified. Either set default table or provide suitable table name for this method.");
             return null;
         } else {
             return getRow(defaultTable, index);
