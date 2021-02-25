@@ -29,19 +29,30 @@ public class RoutineJDBC {
         DataHandler.setTable("table_one");
         
         DataHandler.processRow(data);
-        data = DataHandler.getRow(10);
+        data = DataHandler.getRow(13);
         if (data == null) {
             System.out.println("Null happens.");
         } else {
+            System.out.println("------------------------------");
+            data.forEach((key, value)->{
+                System.out.println(key + " - " + value);
+            });
+            System.out.println("------------------------------");
             int id = Integer.valueOf(data.get("id"));
             data.replace("last_name", "Modified Data");
             DataHandler.processRow(id, data);
             DataHandler.removeRow(id);
         }
         
-//        A new row has been inserted into the table table_one
-//        A row with id 10 within table table_one has been updated.
-//        A row with id 10 within table table_one has been deleted.
+//          A new row has been inserted into the table table_one
+//          ------------------------------
+//          last_name - Some
+//          id - 13
+//          middle_name - Data
+//          first_name - Specific
+//          ------------------------------
+//          A row with id 13 within table table_one has been updated.
+//          A row with id 13 within table table_one has been deleted.
         
 //        create table table_one (
 //            id serial primary key,
